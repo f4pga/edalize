@@ -42,6 +42,7 @@ class Nextpnr(Edatool):
                 "Nextpnr-fpga_interchange require chipdb to be specified."
             )
         package = self.tool_options.get("package")
+        bin_path = self.tool_options.get("binary_path")
 
         for f in self.files:
             if f["file_type"] == "CST":
@@ -173,7 +174,8 @@ class Nextpnr(Edatool):
             output = ["--asc", targets]
 
         depends = netlist
-        command = ["nextpnr-" + arch, "-l", "next.log"]
+        command =  ["nextpnr-" + arch] if bin_path is None else [bin_path]
+        cmmand += ["-l", "next.log"]
         command += arch_options + self.tool_options.get("nextpnr_options", [])
         command += constraints
         if is_interchange:
