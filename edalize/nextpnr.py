@@ -175,7 +175,7 @@ class Nextpnr(Edatool):
 
         depends = netlist
         command =  ["nextpnr-" + arch] if bin_path is None else [bin_path]
-        cmmand += ["-l", "next.log"]
+        command += ["-l", "next.log"]
         command += arch_options + self.tool_options.get("nextpnr_options", [])
         command += constraints
         if is_interchange:
