@@ -168,6 +168,10 @@ class Nextpnr(Edatool):
             targets = self.name + ".phys"
             constraints = ["--xdc", xdc_file]
             output = ["--phys", targets]
+        elif arch == "xilinx":
+            targets = self.name + ".fasm"
+            constraints = ["--xdc", xdc_file] if xdc_file else []
+            output = ["--fasm", targets]
         else:
             targets = self.name + ".asc"
             constraints = ["--pcf", pcf_file] if pcf_file else []
